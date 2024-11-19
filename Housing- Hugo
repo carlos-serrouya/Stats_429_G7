@@ -1,0 +1,5 @@
+setwd("/Users/hugo24/Documents/STAT 429 Lectures")
+install.packages("readxl")
+library(readxl)
+Housing<-read_excel("Housing.xlsx")
+Housing
