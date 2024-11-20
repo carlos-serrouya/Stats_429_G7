@@ -41,3 +41,8 @@ shapiro.test(mod1_residuals)
 n = length(Housing$`House Index (May 2005)`)
 stepwise_model <- step(mod1, direction = "both", k = log(n))
 summary(stepwise_model)
+
+install.packages("leaps")
+library(leaps)
+subset_mod1 <- regsubsets(`House Index (May 2005)`~Year+Population+`Avg. Wage`+`Oil Price CAD(WTI)`+`Energy Index (2002)`+`Real dollars excluding Energy (2002)`+Prime+Overnight+`Total Sales Tax`+`Housing Starts`,data = Housing, nbest=1)
+summary(subset_mod1)
