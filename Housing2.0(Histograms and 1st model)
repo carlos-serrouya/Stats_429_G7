@@ -33,3 +33,11 @@ hist(`Housing Starts`,col = "bisque1")
 par(mfrow=c(1,1))
 mod1<-lm(`House Index (May 2005)`~Year+Population+`Avg. Wage`+`Oil Price CAD(WTI)`+`Energy Index (2002)`+`Real dollars excluding Energy (2002)`+Prime+Overnight+`Total Sales Tax`+`Housing Starts`)
 summary(mod1)
+
+plot(mod1)
+mod1_residuals <- residuals(mod1)
+shapiro.test(mod1_residuals)
+
+n = length(Housing$`House Index (May 2005)`)
+stepwise_model <- step(mod1, direction = "both", k = log(n))
+summary(stepwise_model)
