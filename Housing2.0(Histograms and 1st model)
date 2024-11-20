@@ -1,0 +1,35 @@
+setwd("/Users/hugo24/Documents/STAT 429 Lectures")
+install.packages("readxl")
+library(readxl)
+Housing<-read_excel("Housing.xlsx")
+Housing
+
+Housing<-na.omit(Housing)
+Housing
+
+summary_house<-summary(Housing)
+summary_house
+
+attach(Housing)
+names(Housing)
+
+par(mfrow=c(2,2))
+hist(`House Index (May 2005)`, col = "salmon")
+hist(Population,col = "rosybrown1")
+hist(`Avg. Wage`,col = "palegreen1")
+hist(`Oil Price CAD(WTI)`,col = "gray80")
+
+hist(`Energy Index (2002)`, col = "darkgoldenrod1")
+hist(`Real dollars excluding Energy (2002)`,col = "seagreen")
+hist(Prime,col = "steelblue2")
+hist(Overnight,col = "mediumpurple2")
+
+
+
+par(mfrow=c(2,1))
+hist(`Total Sales Tax`,col ="chocolate3" )
+hist(`Housing Starts`,col = "bisque1")
+
+par(mfrow=c(1,1))
+mod1<-lm(`House Index (May 2005)`~Year+Population+`Avg. Wage`+`Oil Price CAD(WTI)`+`Energy Index (2002)`+`Real dollars excluding Energy (2002)`+Prime+Overnight+`Total Sales Tax`+`Housing Starts`)
+summary(mod1)
